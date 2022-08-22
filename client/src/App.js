@@ -32,7 +32,7 @@ const App = () => {
 };
 
 const Body = styled.div`
-  background-color: powderblue;
+  background-color: #f3f4ed;
   height: 100vh;
 `;
 export default App;

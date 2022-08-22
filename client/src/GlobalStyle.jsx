@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Helvetica", "Arial", sans-serif;
     line-height: 1.5;
+    font-family: 'Abril Fatface', cursive;
   }
 
   h2, p {
