@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import styled from "styled-components";
 
 const TodoInput = ({ getData }) => {
   useEffect(() => {
@@ -11,7 +11,7 @@ const TodoInput = ({ getData }) => {
     e.preventDefault();
     const textContent = e.target.text.value;
     await axios.post(`http://localhost:4001/todo`, {
-      textContent,
+      textContent
     });
     getData();
   };
@@ -50,7 +50,7 @@ const AddText = styled.button`
   }
 
   ::before {
-    content: '';
+    content: "";
     position: absolute;
     height: 100%;
     width: 100%;

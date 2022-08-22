@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const TodoItem = ({ list, getData }) => {
   const [isModify, setIsModify] = useState(false);
+  const [modifyText, setModifyText] = useState("");
 
   useEffect(() => {
     getData();
   }, []);
 
-  const modifyItem = async () => {
+  const modifyItem = async (e) => {
     e.preventDefault();
     setIsModify(!isModify);
     await axios.put(`http://localhost:4001/todo/${list.id}`, {
-      content,
+      content: modifyText
     });
     getData();
+  };
+
+  const modifyContent = (e) => {
+    setModifyText(e.target.value);
   };
 
   const deleteItem = async () => {
@@ -25,14 +30,18 @@ const TodoItem = ({ list, getData }) => {
   return (
     <form onSubmit={modifyItem}>
       <div>할 일</div>
-      {isModify ? <input name="text" /> : <div>{list?.content}</div>}
+      {isModify ? (
+        <input name="text" onChange={modifyContent} />
+      ) : (
+        <div>{list?.content}</div>
+      )}
       <div>날짜</div>
       <div>{list?.updatedAt}</div>
       <div>했니?</div>
       <div>{list?.done}</div>
       {isModify ? <></> : <input type="submit" value="수정!" />}
 
-      <button onClick={deleteItem}>삭제!</button>
+      <button onClick={() => deleteItem}>삭제!</button>
     </form>
   );
 };
