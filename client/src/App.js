@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import TodoTitle from './components/TodoTitle';
-import TodoInput from './components/TodoInput';
-import TodoItems from './components/TodoItems';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import TodoTitle from "./components/TodoTitle";
+import TodoInput from "./components/TodoInput";
+import TodoItems from "./components/TodoItems";
 
 const App = () => {
   const [todoList, setTodoList] = useState([]);
@@ -32,7 +32,8 @@ const App = () => {
 };
 
 const Body = styled.div`
-  background-color: #f3f4ed;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 export default App;

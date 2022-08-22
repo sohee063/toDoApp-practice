@@ -10,12 +10,18 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+let today = new Date();
+let year = today.getFullYear();
+let month = ("0" + (1 + today.getMonth())).slice(-2);
+let day = ("0" + today.getDate()).slice(-2);
+let date = `${year} - ${month} - ${day}`;
+
 const todoList = [
   {
     id: 1,
-    content: "할 일",
+    content: "코딩 공부하기",
     done: false,
-    updatedAt: new Date().toISOString()
+    updatedAt: date
   }
 ];
 
@@ -32,7 +38,7 @@ app.post("/todo", (req, res) => {
   todoList.unshift({
     id: getUid(),
     content: textContent,
-    updatedAt: new Date().toISOString(),
+    updatedAt: date,
     done
   });
   return res.send("todo 추가 성공❗️");
@@ -44,7 +50,7 @@ app.put("/todo/:id", (req, res) => {
   const updated = {
     ...todoList[index],
     content,
-    updatedAt: new Date().toISOString()
+    updatedAt: date
   };
   if (index !== -1) {
     todoList.splice(index, 1, updated);

@@ -1,14 +1,21 @@
 import React from "react";
+import styled from "styled-components";
 import TodoItem from "./TodoItem";
 
 const TodoItems = ({ todoList, getData }) => {
   return (
-    <div>
+    <Items>
       {todoList.map((list) => (
         <TodoItem key={list.id} list={list} getData={getData} />
       ))}
-    </div>
+    </Items>
   );
 };
+
+const Items = styled.div`
+  color: white;
+  width: 80%;
+  margin-top: 4rem;
+`;
 
 export default TodoItems;

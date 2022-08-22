@@ -7,10 +7,10 @@ const TodoTitle = () => {
 
 const MainTitle = styled.div`
   font-size: 6rem;
-  color: #222831;
-  text-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px, -1px 0 #fff, 0 1px #fff,
-    1px 0 #fff, 0 -1px #fff;
+  color: #fcf8e8;
+  text-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
   text-align: center;
+  margin-bottom: 4rem;
 `;
 
 export default TodoTitle;

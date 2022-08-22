@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     *, *::before, *::after {
@@ -11,6 +11,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Helvetica", "Arial", sans-serif;
     line-height: 1.5;
     font-family: 'Abril Fatface', cursive;
+  background-color: #100720;
+  height: 100vh;
   }
 
   h2, p {
