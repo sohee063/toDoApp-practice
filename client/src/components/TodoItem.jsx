@@ -22,27 +22,28 @@ const TodoItem = ({ list, getData }) => {
     setModifyText(e.target.value);
   };
 
-  const deleteItem = async () => {
-    await axios.delete(`http://localhost:4001/todo/${list.id}`);
+  const deleteItem = async (id) => {
+    await axios.delete(`http://localhost:4001/todo/${id}`);
     getData();
   };
 
   return (
-    <form onSubmit={modifyItem}>
-      <div>할 일</div>
-      {isModify ? (
-        <input name="text" onChange={modifyContent} />
-      ) : (
-        <div>{list?.content}</div>
-      )}
-      <div>날짜</div>
-      <div>{list?.updatedAt}</div>
-      <div>했니?</div>
-      <div>{list?.done}</div>
-      {isModify ? <></> : <input type="submit" value="수정!" />}
-
-      <button onClick={() => deleteItem}>삭제!</button>
-    </form>
+    <>
+      <form onSubmit={modifyItem}>
+        <div>할 일</div>
+        {isModify ? (
+          <input name="text" onChange={modifyContent} />
+        ) : (
+          <div>{list?.content}</div>
+        )}
+        <div>날짜</div>
+        <div>{list?.updatedAt}</div>
+        <div>했니?</div>
+        <div>{list?.done}</div>
+        {isModify ? <></> : <input type="submit" value="수정!" />}
+      </form>
+      <button onClick={() => deleteItem(list.id)}>삭제!</button>
+    </>
   );
 };
 

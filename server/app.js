@@ -40,7 +40,6 @@ app.post("/todo", (req, res) => {
 
 app.put("/todo/:id", (req, res) => {
   const { content } = req.body;
-  console.log(content);
   const index = todoList.findIndex((item) => item.id == Number(req.params.id));
   const updated = {
     ...todoList[index],
