@@ -15,8 +15,6 @@ const TodoInput = ({ getData }) => {
 
   const addTodo = async (e) => {
     e.preventDefault();
-    // let textContent = e.target.text.value;
-    console.log(inputValue);
     await axios.post(`http://localhost:4001/todo`, {
       textContent: inputValue
     });
@@ -27,7 +25,12 @@ const TodoInput = ({ getData }) => {
   return (
     <>
       <TextForm onSubmit={addTodo}>
-        <TextInput onChange={inputHandler} value={inputValue} name="text" />
+        <TextInput
+          autofocus="autofocus"
+          onChange={inputHandler}
+          value={inputValue}
+          name="text"
+        />
       </TextForm>
     </>
   );

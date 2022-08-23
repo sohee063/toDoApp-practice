@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -7,6 +7,8 @@ const TodoItem = ({ list, getData }) => {
   const [modifyText, setModifyText] = useState("");
   const [isDone, setIsDone] = useState(false);
 
+  const modifyInput = useRef();
+
   useEffect(() => {
     getData();
   }, []);
@@ -14,10 +16,12 @@ const TodoItem = ({ list, getData }) => {
   const modifyItem = async (e) => {
     setIsModify(!isModify);
     e.preventDefault();
+
     await axios.put(`http://localhost:4001/todo/${list.id}`, {
       content: modifyText
     });
     getData();
+    modifyInput.current.focus();
   };
 
   const taskDone = () => {
@@ -37,7 +41,7 @@ const TodoItem = ({ list, getData }) => {
     <Item>
       <Task onSubmit={modifyItem}>
         {isModify ? (
-          <input name="text" onChange={modifyContent} />
+          <input name="text" onChange={modifyContent} ref={modifyInput} />
         ) : (
           <TaskContent isDone={isDone} onClick={taskDone}>
             {list?.content}
@@ -46,14 +50,7 @@ const TodoItem = ({ list, getData }) => {
       </Task>
       <Btn>
         <div>{list?.updatedAt}</div>
-        <ModifyBtn
-          onClick={(e) => {
-            e.target.value = list.content;
-            setIsModify(!isModify);
-          }}
-          type="submit"
-          value="Edit"
-        />
+        <ModifyBtn onClick={modifyItem} type="submit" value="Edit" />
         <DeleteBtn onClick={() => deleteItem(list.id)}>Del</DeleteBtn>
       </Btn>
     </Item>
