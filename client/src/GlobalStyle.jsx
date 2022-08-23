@@ -10,21 +10,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Helvetica", "Arial", sans-serif;
     line-height: 1.5;
-    font-family: 'Abril Fatface', cursive;
-  background-color: #100720;
-  height: 100vh;
-  }
+    font-family: "Hahmlet", serif;
+    background-color: #100720;
+   height: 100vh;
 
-  h2, p {
-    margin: 0;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  p {
-    font-size: 1rem;
   }
 `;
 

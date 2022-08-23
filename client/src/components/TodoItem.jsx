@@ -5,6 +5,7 @@ import styled from "styled-components";
 const TodoItem = ({ list, getData }) => {
   const [isModify, setIsModify] = useState(false);
   const [modifyText, setModifyText] = useState("");
+  const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
     getData();
@@ -17,6 +18,10 @@ const TodoItem = ({ list, getData }) => {
       content: modifyText
     });
     getData();
+  };
+
+  const taskDone = () => {
+    setIsDone(!isDone);
   };
 
   const modifyContent = (e) => {
@@ -34,10 +39,11 @@ const TodoItem = ({ list, getData }) => {
         {isModify ? (
           <input name="text" onChange={modifyContent} />
         ) : (
-          <div>{list?.content}</div>
+          <TaskContent isDone={isDone} onClick={taskDone}>
+            {list?.content}
+          </TaskContent>
         )}
       </Task>
-      <div>{list?.done}</div>
       <Btn>
         <div>{list?.updatedAt}</div>
         <ModifyBtn
@@ -46,15 +52,16 @@ const TodoItem = ({ list, getData }) => {
             setIsModify(!isModify);
           }}
           type="submit"
-          value="수정"
+          value="Edit"
         />
-        <DeleteBtn onClick={() => deleteItem(list.id)}>삭제</DeleteBtn>
+        <DeleteBtn onClick={() => deleteItem(list.id)}>Del</DeleteBtn>
       </Btn>
     </Item>
   );
 };
 
 const Item = styled.div`
+  font-family: "Hahmlet", serif;
   display: flex;
   margin: 1rem;
   justify-content: space-between;
@@ -63,11 +70,17 @@ const Item = styled.div`
   border-radius: 2rem;
   padding: 1rem;
   background-color: rgba(94, 91, 91, 0.05);
-  > div {
-    margin: 1rem;
+  :hover {
+    background-color: #dcd7d7;
+    color: black;
+    transition: 700ms;
+    transform: translateY(-2px);
   }
+`;
 
-  transition: 500ms;
+const TaskContent = styled.div`
+  margin: 0.6rem;
+  text-decoration: ${(props) => (props.isDone ? "line-through" : "none")};
 `;
 
 const Task = styled.form`

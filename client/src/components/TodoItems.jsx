@@ -14,7 +14,7 @@ const TodoItems = ({ todoList, getData }) => {
 
 const Items = styled.div`
   color: white;
-  width: 80%;
+  width: 70%;
   margin-top: 4rem;
 `;
 
