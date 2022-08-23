@@ -35,6 +35,7 @@ app.get("/todo/:id", (req, res) => {
 
 app.post("/todo", (req, res) => {
   const { textContent, done } = req.body;
+  console.log(textContent);
   todoList.unshift({
     id: getUid(),
     content: textContent,
